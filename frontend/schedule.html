@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Conference Schedule</h1>
+    <div id="schedule"></div>
+    <script>
+        fetch("/user/schedule")
+            .then(response => response.json())
+            .then(data => {
+                const scheduleDiv = document.getElementById("schedule");
+                data.forEach(conference => {
+                    scheduleDiv.innerHTML += `<p>${conference.name} - ${conference.date} - ${conference.location}</p>`;
+                });
+            });
+    </script>
+</body>
+</html>
